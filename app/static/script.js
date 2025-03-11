@@ -1,5 +1,5 @@
 let pizzaIndex = 1; 
-let repartidorIndex = 1; 
+let repartidorIndex = 0; 
 
 const pizzaImagenes = [
     "static/img/pizza1.webp",
@@ -15,17 +15,7 @@ const pizzaSabores = [
     "Mexicana"
 ];
 
-const repartidorImagenes = [
-    "static/img/repa1.png",
-    "static/img/repa2.png",
-    "static/img/repa3.png"
-];
 
-const repartidorNombres = [
-    "Margarito",
-    "Oscar",
-    "Vlad"
-];
 
 // Función para cambiar las imágenes y el sabor de las pizzas
 function cambiarImagenPizza(direccion) {
@@ -36,11 +26,16 @@ function cambiarImagenPizza(direccion) {
     document.getElementById("pizzaSabor").textContent = pizzaSabores[pizzaIndex];
 }
 
-// Función para cambiar las imágenes y el nombre del repartidor
 function cambiarImagenRepartidor(direccion) {
     repartidorIndex += direccion;
-    if (repartidorIndex >= repartidorImagenes.length) repartidorIndex = 0;  // Volver al primer elemento
-    if (repartidorIndex < 0) repartidorIndex = repartidorImagenes.length - 1;  // Volver al último elemento
-    document.getElementById("repartidorImg").src = repartidorImagenes[repartidorIndex];
-    document.getElementById("repartidorNombre").textContent = repartidorNombres[repartidorIndex];
+    
+    // Asegurar que el índice sea válido
+    if (repartidorIndex >= listaRepas.length) repartidorIndex = 0;  // Volver al inicio
+    if (repartidorIndex < 0) repartidorIndex = listaRepas.length - 1;  // Volver al final
+
+    // Cambiar la imagen del repartidor
+    document.getElementById("repartidorImg").src = `static/img/${listaRepas[repartidorIndex].imagen}`;
+
+    // Cambiar el nombre del repartidor
+    document.getElementById("repartidorNombre").textContent = listaRepas[repartidorIndex].nombre;
 }

@@ -16,7 +16,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+# Importar los modelos
+from app.models import Repartidores
+
+
 #Ruta Raiz
 @app.route('/')
 def index():
-    return render_template('home.html')
+    repas = Repartidores.query.all()
+    lista_repas = [{"id": repa.id, "nombre": repa.nombre, "placa_moto": repa.placa_moto, "imagen": repa.imagen} for repa in repas]
+    return render_template('home.html', repas=lista_repas)
