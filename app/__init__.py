@@ -20,6 +20,8 @@ db = SQLAlchemy(app)
 from app.models import Repartidores
 from app.models import Pizzas
 
+from app.routes.pizzas import pizzae_bp
+app.register_blueprint(pizzae_bp, url_prefix='/pipshash')
 
 #Ruta Raiz
 @app.route('/')
