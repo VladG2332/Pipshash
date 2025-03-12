@@ -16,22 +16,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-<<<<<<< HEAD
 from app.models import Pizzas
 from app.models import Repartidores
 
-=======
-
-from app.models import Pizzas
->>>>>>> 8c2394e585512ffbae7e3daf199b74a751a4d4b1
 from app.routes.pizzas import pizzae_bp
 app.register_blueprint(pizzae_bp, url_prefix='/pipshash')
-<<<<<<< HEAD
-=======
-# Importar los modelos
-from app.models import Repartidores
-from app.models import Pizzas
->>>>>>> 8c2394e585512ffbae7e3daf199b74a751a4d4b1
 
 #Ruta Raiz
 @app.route('/')
