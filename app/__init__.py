@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Importar modelos para que SQLAlchemy los reconozca
-from app.models import Repartidor
+from app.models import Repartidores
 
 # Importar y registrar blueprints
 from app.routes.repartidores import repartidores_bp
@@ -27,7 +27,7 @@ app.register_blueprint(repartidores_bp, url_prefix='/repartidores')
 
 # Ruta principal
 from app.models import Pizzas
-from app.models import Repartidores
+from app.models import Repartidores 
 from app.routes.pizzas import pizzae_bp
 
 app.register_blueprint(pizzae_bp, url_prefix='/pipshash')
