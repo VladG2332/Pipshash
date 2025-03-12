@@ -7,5 +7,4 @@ class Pizzas(db.Model):
     nombre = db.Column(db.String(200), nullable=False)
     masa = db.Column(db.Text, nullable=False)
     queso = db.Column(db.Text, nullable=False)
-    
-    
+    imagen = db.Column(db.String(50), nullable=False)
