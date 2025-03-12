@@ -28,3 +28,25 @@
     </div>
   </body>
 </html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/ee9903c79f.js" crossorigin="anonymous"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <br>
+        <h1 class="title has-text-centered is-1">Dominos Pipshash</h1>
+        <h2 class="subtitle has-text-centered is-4">Las mas nenas de San Juan</h2>
+        <hr>
+    </header>
+    <div class="container">
+        <ul class="list">
+            {% block content %}{% endblock %}
+        </ul>
+    </div>
+</body>
+</html>
