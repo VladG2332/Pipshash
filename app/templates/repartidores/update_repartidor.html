@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} Actualizar Repartidor {% endblock %}
+{% block content %}
+<div class="columns">
+    <div class="column is-6 is-offset-3">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="title is-4 has-text-centered">Actualizar Repartidor</h2>
+                <form action="{{ url_for('repartidores.update_repartidor', id=repartidor.id) }}" method="post">
+                    <div class="field">
+                        <label class="label">Nombre:</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nombre" value="{{ repartidor.nombre }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Placa de la Moto:</label>
+                        <div class="control">
+                            <input class="input" type="text" name="placa_moto" value="{{ repartidor.placa_moto }}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Capacidad de Entregas:</label>
+                        <div class="control">
+                            <input class="input" type="number" name="capacidad" value="{{ repartidor.capacidad }}">
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="button is-success" type="submit">Actualizar</button>
+                        <a class="button is-danger" href="{{ url_for('repartidores.listar_repartidores') }}">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
