@@ -35,13 +35,14 @@
                 <div class="dashboard_contenedor-carta">
                     <h2 class="carta_titulo">Repartidores</h2>
                     
+                    
                     <div class="carrusel">
                         <button class="carrusel_btn izquierda" onclick="cambiarImagenRepartidor(-1)">❮</button>
                         <img id="repartidorImg" src="{{ url_for('static', filename='img/repa1.png') }}" class="carrusel_img" alt="Repartidor">
                         <button class="carrusel_btn derecha" onclick="cambiarImagenRepartidor(1)">❯</button>
                     </div>
                     
-                    <p id="repartidorNombre" class="carrusel_texto">Margarito</p>
+                    <p id="repartidorNombre" class="carrusel_texto">{{repas[0].nombre}}</p>
                 </div>
                 
                 
@@ -83,7 +84,11 @@
 
 
     </div>
-    
+
+    <script>
+        var listaRepas = JSON.parse('{{ repas | tojson | safe }}');
+        var listaPizzas = JSON.parse('{{ pizzas | tojson | safe }}');
+    </script>
     <script src="{{url_for('static', filename='script.js')}}"></script>
 </body>
 </html>
