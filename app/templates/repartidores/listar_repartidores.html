@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} Lista de Repartidores {% endblock %}
+{% block content %}
+<div class="columns">
+    <div class="column is-10 is-offset-1">
+        <a href="{{ url_for('repartidores.add_repartidor') }}" class="button is-success">
+            <i class="fa-solid fa-plus"></i> &nbsp; Agregar Repartidor
+        </a>
+        <br><br>
+
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Placa</th>
+                    <th>Capacidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for repartidor in repartidores %}
+                <tr>
+                    <td>{{ repartidor.nombre }}</td>
+                    <td>{{ repartidor.placa_moto }}</td>
+                    <td>{{ repartidor.capacidad }}</td>
+                    <td>
+                        <a href="{{ url_for('repartidores.update_repartidor', id=repartidor.id) }}" class="button is-small is-link">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a href="{{ url_for('repartidores.delete_repartidor', id=repartidor.id) }}" class="button is-small is-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>  
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

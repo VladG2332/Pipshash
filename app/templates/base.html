@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="theme-light" style="background-color: #e0f2ff;">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <script src="https://kit.fontawesome.com/ee9903c79f.js" crossorigin="anonymous"></script>
+    <style>
+      .hero { background-color: #336699; color: white; }
+      .hero h1, .hero h2 { color: white !important; }
+      .button.is-danger { background-color: #cc0000; color: white; }
+      .button.is-success { background-color: #008080; color: white; }
+      table { width: 100%; border-collapse: collapse; background-color: white; }
+      th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+      th { background-color: #004080; color: white; }
+    </style>
+  </head>
+  <body>
+    <header class="hero is-small">
+        <div class="hero-body">
+            <h1 class="title has-text-centered is-1">Pipshas</h1>
+            <h2 class="subtitle has-text-centered is-4">Las mejores de San Juan</h2>
+        </div>
+    </header>
+    <div class="container mt-5">
+        {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>
