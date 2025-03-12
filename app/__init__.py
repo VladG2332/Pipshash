@@ -18,6 +18,7 @@ db = SQLAlchemy(app)
 
 # Importar los modelos
 from app.models import Repartidores
+from app.models import Pizzas
 
 
 #Ruta Raiz
@@ -25,4 +26,6 @@ from app.models import Repartidores
 def index():
     repas = Repartidores.query.all()
     lista_repas = [{"id": repa.id, "nombre": repa.nombre, "placa_moto": repa.placa_moto, "imagen": repa.imagen} for repa in repas]
-    return render_template('home.html', repas=lista_repas)
+    pizzas = Pizzas.query.all()
+    lista_pizzas = [{"id": pizza.id, "nombre": pizza.nombre, "masa": pizza.masa, "queso": pizza.queso, "imagen": pizza.imagen} for pizza in pizzas]
+    return render_template('home.html', repas=lista_repas, pizzas=lista_pizzas)

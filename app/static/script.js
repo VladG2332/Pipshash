@@ -20,10 +20,13 @@ const pizzaSabores = [
 // Función para cambiar las imágenes y el sabor de las pizzas
 function cambiarImagenPizza(direccion) {
     pizzaIndex += direccion;
-    if (pizzaIndex >= pizzaImagenes.length) pizzaIndex = 0;  // Volver al primer elemento
-    if (pizzaIndex < 0) pizzaIndex = pizzaImagenes.length - 1;  // Volver al último elemento
-    document.getElementById("pizzaImg").src = pizzaImagenes[pizzaIndex];
-    document.getElementById("pizzaSabor").textContent = pizzaSabores[pizzaIndex];
+
+    if (pizzaIndex >= listaPizzas.length) pizzaIndex = 0;  // Volver al primer elemento
+    if (pizzaIndex < 0) pizzaIndex = listaPizzas.length - 1;  // Volver al último elemento
+
+    document.getElementById("pizzaImg").src = `static/img/${listaPizzas[pizzaIndex].imagen}`;
+
+    document.getElementById("pizzaSabor").textContent = listaPizzas[pizzaIndex].nombre;
 }
 
 function cambiarImagenRepartidor(direccion) {

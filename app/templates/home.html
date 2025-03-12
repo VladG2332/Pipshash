@@ -87,6 +87,7 @@
 
     <script>
         var listaRepas = JSON.parse('{{ repas | tojson | safe }}');
+        var listaPizzas = JSON.parse('{{ pizzas | tojson | safe }}');
     </script>
     <script src="{{url_for('static', filename='script.js')}}"></script>
 </body>
