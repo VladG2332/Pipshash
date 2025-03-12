@@ -16,7 +16,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Inicializar la base de datos
 db = SQLAlchemy(app)
 
-<<<<<<< HEAD
 # Importar modelos para que SQLAlchemy los reconozca
 from app.models import Repartidor
 
@@ -27,7 +26,6 @@ from app.routes.repartidores import repartidores_bp
 app.register_blueprint(repartidores_bp, url_prefix='/repartidores')
 
 # Ruta principal
-=======
 from app.models import Pizzas
 from app.models import Repartidores
 from app.routes.pizzas import pizzae_bp
@@ -35,7 +33,6 @@ from app.routes.pizzas import pizzae_bp
 app.register_blueprint(pizzae_bp, url_prefix='/pipshash')
 
 #Ruta Raiz
->>>>>>> 0446d34c1c7947877db9dd3b805977db0791dfe6
 @app.route('/')
 def index():
     repas = Repartidores.query.all()
