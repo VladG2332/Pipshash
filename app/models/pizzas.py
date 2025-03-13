@@ -8,3 +8,4 @@ class Pizzas(db.Model):
     masa = db.Column(db.String(200), nullable=False)
     queso = db.Column(db.Integer, nullable=False)
     imagen = db.Column(db.String(50), nullable=False)
+    pizzas = db.relationship('Orden', backref='pizza', lazy=True)

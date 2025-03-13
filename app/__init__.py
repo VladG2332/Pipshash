@@ -18,19 +18,26 @@ db = SQLAlchemy(app)
 
 # Importar modelos para que SQLAlchemy los reconozca
 from app.models import Repartidores
+from app.models import Pizzas
+from app.models import Pedidos
+from app.models import Orden
+
 
 # Importar y registrar blueprints
 from app.routes.repartidores import repartidores_bp
+from app.routes.pizzas import pizzae_bp
+from app.routes.pedidos import pedidos_bp
 
 # Registrar blueprint
 app.register_blueprint(repartidores_bp, url_prefix='/repartidores')
+app.register_blueprint(pizzae_bp, url_prefix='/pipshash')
+app.register_blueprint(pedidos_bp, url_prefix='/pedidos')
 
 # Ruta principal
-from app.models import Pizzas
-from app.models import Repartidores 
+
 from app.routes.pizzas import pizzae_bp
 
-app.register_blueprint(pizzae_bp, url_prefix='/pipshash')
+
 
 #Ruta Raiz
 @app.route('/')
@@ -39,4 +46,6 @@ def index():
     lista_repas = [{"id": repa.id, "nombre": repa.nombre, "placa_moto": repa.placa_moto, "imagen": repa.imagen} for repa in repas]
     pizzas = Pizzas.query.all()
     lista_pizzas = [{"id": pizza.id, "nombre": pizza.nombre, "masa": pizza.masa, "queso": pizza.queso, "imagen": pizza.imagen} for pizza in pizzas]
-    return render_template('home.html', repas=lista_repas, pizzas=lista_pizzas)
+    pedidos = Pedidos.query.all()
+    ordenes = Orden.query.all()
+    return render_template('home.html', repas=lista_repas, pizzas=lista_pizzas, pedidos=pedidos, ordenes=ordenes, repasl=repas)
