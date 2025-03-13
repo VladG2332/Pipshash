@@ -7,12 +7,14 @@
     <title>PIPSHASH</title>
 </head>
 <body>
+    
+    
     <div class="contenedor">
 
         <div class="menu">
             <a class="menu_link" href="{{url_for('pipshash.listar_pizza')}}">Administrar Pipshash</a>
-            <a class="menu_link" href="#">Administrar Repas</a>
-            <a class="menu_link" href="#">Administrar Pedidos</a>
+            <a class="menu_link" href="{{url_for('repartidores.listar_repartidores')}}">Administrar Repas</a>
+            <a class="menu_link" href="{{url_for('pedidos.listar_pedidos')}}">Administrar Pedidos</a>
         </div>
 
         <div class="dashboard">
@@ -59,21 +61,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for pedido in pedidos %}
                             <tr>
-                                <td>#001</td>
-                                <td>Pepperoni, Hawaiana</td>
-                                <td>Vlad</td>
+                                <td>{{pedido.id}}</td>
+                                <td>
+                                    {% for orden in ordenes %}
+                                        {% if pedido.orden_id == orden.id %}
+                                            {% for pizza in pizzas %}
+                                                {% if orden.pizza_id == pizza.id %}
+                                                    {{ pizza.nombre ~ " x " ~ orden.cantidad }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for repa in repasl %}
+                                        {% if pedido.repartidor_id == repa.id %}
+                                            {{ repa.nombre }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
                             </tr>
-                            <tr>
-                                <td>#002</td>
-                                <td>Hawaiana, Mexicana</td>
-                                <td>Oscar</td>
-                            </tr>
-                            <tr>
-                                <td>#003</td>
-                                <td>Queso</td>
-                                <td>Margarito</td>
-                            </tr>
+                            {% endfor %}
+                            
                         </tbody>
                     </table>
                 </div>

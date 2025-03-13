@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} Agregar Repartidor {% endblock %}
+{% block content %}
+<div class="columns">
+    <div class="column is-6 is-offset-3">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="title is-4 has-text-centered">Agregar Repartidor</h2>
+                <form action="{{ url_for('repartidores.add_repartidor') }}" method="post">
+                    <div class="field">
+                        <label class="label">Nombre:</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nombre" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Placa de la Moto:</label>
+                        <div class="control">
+                            <input class="input" type="text" name="placa_moto" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Capacidad de Entregas:</label>
+                        <div class="control">
+                            <input class="input" type="number" name="capacidad" required>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="button is-success" type="submit">Agregar</button>
+                        <a class="button is-danger" href="{{ url_for('repartidores.listar_repartidores') }}">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

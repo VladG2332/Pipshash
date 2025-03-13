@@ -8,3 +8,5 @@ class Repartidores(db.Model):
     placa_moto = db.Column(db.String(200), nullable=False)
     capacidad = db.Column(db.Integer, nullable=False)
     imagen = db.Column(db.String(50), nullable=False)
+    pedidos = db.relationship('Pedidos', backref='repartidor', lazy=True)
+
