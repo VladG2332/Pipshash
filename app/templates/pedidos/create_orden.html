@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %} Crear Orden {% endblock %}
+
+{% block content %}
+<div class="columns">
+    <div class="column is-offset-3 is-6">
+        <h1 class="title">Crear nueva orden</h1>
+        <form method="POST">
+            <div class="field">
+                <label class="label">Pizza</label>
+                <div class="control">
+                    <select class="label" name="pizza" id="pizza">
+                        {% for pizza in pizzas %}
+                            <option value="{{pizza.id}}">{{pizza.nombre}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Cantidad</label>
+                <div class="control">
+                    <input class="input" type="number" name="cantidad" required>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <button class="button is-success" type="submit">Crear Orden</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
