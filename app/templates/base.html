@@ -14,15 +14,44 @@
       table { width: 100%; border-collapse: collapse; background-color: white; }
       th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
       th { background-color: #004080; color: white; }
+      .link-hover {
+        color: white;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .link-hover:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+    }
     </style>
 </head>
 <body>
     <header class="hero is-small">
         <div class="hero-body">
-            <h1 class="title has-text-centered is-1">Domino's Pipshash</h1>
-            <h2 class="subtitle has-text-centered is-4">Las mejores de San Juan</h2>
+            <div class="container">
+                <div class="columns is-vcentered">
+                    <div class="column is-half">
+                        <h1 class="title is-1 has-text-white">Domino's Pipshash</h1>
+                        <h2 class="subtitle is-4 has-text-light">Las mejores de San Juan</h2>
+                    </div>
+    
+                    <div class="column is-half has-text-right">
+                        <nav class="navbar">
+                            <div class="navbar-menu is-active">
+                                <div class="navbar-end">
+                                    <a href="/" class="navbar-item has-text-white link-hover">Dashboard</a>
+                                    <a href="{{url_for('pipshash.listar_pizza')}}" class="navbar-item link-hover has-text-white">Administrar Pipshash</a>
+                                    <a href="{{url_for('repartidores.listar_repartidores')}}" class="navbar-item link-hover has-text-white">Administrar Repas</a>
+                                    <a href="{{url_for('pedidos.listar_pedidos')}}" class="navbar-item link-hover has-text-white">Administrar Pedidos</a>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
+    
     <div class="container mt-5">
         {% block content %}{% endblock %}
     </div>

@@ -7,5 +7,5 @@ class Pizzas(db.Model):
     nombre = db.Column(db.String(200), nullable=False)
     masa = db.Column(db.String(200), nullable=False)
     queso = db.Column(db.Integer, nullable=False)
-    imagen = db.Column(db.String(50), nullable=False)
+    imagen = db.Column(db.String(255), nullable=True)
     pizzas = db.relationship('Orden', backref='pizza', lazy=True)
