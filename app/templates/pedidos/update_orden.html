@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %} Editar Orden {% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="title is-4 has-text-centered">Editar Orden</h2>
+    <form method="POST" action="{{ url_for('pedidos.update_orden', id=orden.id) }}">
+        <div class="field">
+            <label class="label">Pizza</label>
+            <div class="control">
+                <div class="select is-fullwidth">
+                    <select name="pizza">
+                        {% for pizza in pizzas %}
+                            <option value="{{ pizza.id }}" {% if pizza.id == orden.pizza_id %}selected{% endif %}>
+                                {{ pizza.nombre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Cantidad</label>
+            <div class="control">
+                <input class="input" type="number" name="cantidad" value="{{ orden.cantidad }}" required>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link" type="submit">Guardar</button>
+            </div>
+            <div class="control">
+                <a class="button is-light" href="{{ url_for('pedidos.listar_pedidos') }}">Cancelar</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

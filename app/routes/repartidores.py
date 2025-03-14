@@ -1,8 +1,13 @@
+import os
 from flask import Blueprint, render_template, request, redirect, url_for
+from werkzeug.utils import secure_filename
 from app import db
 from app.models import Repartidores  # Cambio aquí
 
 repartidores_bp = Blueprint('repartidores', __name__)
+
+UPLOAD_FOLDER = 'app/static/img'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 # Ruta para ver todos los repartidores
 @repartidores_bp.route('/')
@@ -17,13 +22,28 @@ def add_repartidor():
         nombre = request.form['nombre']
         placa_moto = request.form['placa_moto']
         capacidad = request.form['capacidad']
-        
-        new_repartidor = Repartidores(nombre=nombre, placa_moto=placa_moto, capacidad=capacidad)
-        db.session.add(new_repartidor)
-        db.session.commit()
 
-        return redirect(url_for('repartidores.listar_repartidores'))  
-    
+        # Verifica si se subió un archivo
+        if 'imagen' not in request.files:
+            return "No se ha seleccionado ningún archivo", 400
+
+        file = request.files['imagen']
+
+        # Si no se seleccionó un archivo, o el archivo está vacío
+        if file.filename == '':
+            return "No se ha seleccionado ningún archivo", 400
+
+        # Validar tipo de archivo
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(UPLOAD_FOLDER, filename))  # Guarda la imagen en la carpeta
+
+            # Guarda solo el nombre del archivo en la BD
+            new_repa = Repartidores(nombre=nombre, placa_moto=placa_moto, capacidad=capacidad, imagen=filename)
+            db.session.add(new_repa)
+            db.session.commit()
+        return redirect(url_for('repartidores.listar_repartidores'))
+
     return render_template('repartidores/create_repartidor.html')
 
 # Actualizar repartidor
@@ -48,3 +68,6 @@ def delete_repartidor(id):
         db.session.delete(repartidor)
         db.session.commit()
     return redirect(url_for('repartidores.listar_repartidores'))
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
