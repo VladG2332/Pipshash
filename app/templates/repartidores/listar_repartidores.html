@@ -1,40 +1,43 @@
 {% extends 'base.html' %}
-{% block title %} Lista de Repartidores {% endblock %}
-{% block content %}
-<div class="columns">
-    <div class="column is-10 is-offset-1">
-        <a href="{{ url_for('repartidores.add_repartidor') }}" class="button is-success">
-            <i class="fa-solid fa-plus"></i> &nbsp; Agregar Repartidor
-        </a>
-        <br><br>
+{% block title %}Lista de Repartidores{% endblock %}
 
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Placa</th>
-                    <th>Capacidad</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for repartidor in repartidores %}
-                <tr>
-                    <td>{{ repartidor.nombre }}</td>
-                    <td>{{ repartidor.placa_moto }}</td>
-                    <td>{{ repartidor.capacidad }}</td>
-                    <td>
-                        <a href="{{ url_for('repartidores.update_repartidor', id=repartidor.id) }}" class="button is-small is-link">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <a href="{{ url_for('repartidores.delete_repartidor', id=repartidor.id) }}" class="button is-small is-danger">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>  
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+{% block content %}
+<div class="container">
+    <a href="{{ url_for('repartidores.add_repartidor') }}" class="button is-success">
+        <i class="fa-solid fa-plus"></i> &nbsp; Agregar Repartidor
+    </a>
+    <br><br>
+
+    <div class="columns is-multiline">
+        {% for repartidor in repartidores %}
+        <div class="column is-4">
+            <div class="card">
+                <div class="card-content has-text-centered">
+                    <p class="title is-4">{{ repartidor.nombre }}</p>
+                </div>
+
+                <div class="card-image has-text-centered">
+                    <figure class="image is-4by3" style="max-width: 200px; margin: 0 auto;">
+                        <img src="{{ url_for('static', filename='img/' + repartidor.imagen) }}" alt="Imagen de {{ repartidor.nombre }}">
+                    </figure>
+                </div>
+
+                <div class="card-content">
+                    <p><strong>Placa:</strong> {{ repartidor.placa_moto }}</p>
+                    <p><strong>Capacidad:</strong> {{ repartidor.capacidad }}</p>
+                </div>
+
+                <div class="card-footer has-text-centered" style="display: flex; justify-content: space-around; padding: 1rem;">
+                    <a href="{{ url_for('repartidores.update_repartidor', id=repartidor.id) }}" class="button is-small is-link is-outlined">
+                        <i class="fa-solid fa-pen-to-square"></i> Editar
+                    </a>
+                    <a href="{{ url_for('repartidores.delete_repartidor', id=repartidor.id) }}" class="button is-small is-danger is-outlined">
+                        <i class="fa-solid fa-trash"></i> Eliminar
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

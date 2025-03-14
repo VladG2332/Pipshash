@@ -3,61 +3,105 @@
 {% block content %}
 <div class="columns">
     <div class="column is-10 is-offset-1">
-        <a href="{{url_for('pedidos.add_orden')}}" class="button is-success">
-            <i class="fa-solid fa-plus"></i> &nbsp; Agregar Orden
-        </a>
-        <a href="{{url_for('pedidos.add_pedido')}}" class="button is-success">
-            <i class="fa-solid fa-plus"></i> &nbsp; Agregar Pedido
-        </a>
-        <br><br>
+        <div class="columns">
+            <div class="column is-6">
+                <h2 class="title is-4 has-text-centered">Pedidos</h2>
+                <div class="has-text-centered mb-4">
+                    <a href="{{url_for('pedidos.add_pedido')}}" class="button is-success">
+                        <i class="fa-solid fa-plus"></i> &nbsp; Agregar Pedido
+                    </a>
+                </div>
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Pizzas</th>
+                            <th>Repartidor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th>ID Pedido</th>
-                    <th>Pizzas</th>
-                    <th>Repartidor</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                {% for pedido in pedidos %}
-                    <tr>
-                        <td>{{pedido.id}}</td>
-                        <td>
-                            {% for orden in ordenes %}
-                                {% if pedido.orden_id == orden.id %}
-                                    {% for pizza in pizzas %}
-                                        {% if orden.pizza_id == pizza.id %}
-                                            {{ pizza.nombre ~ " x " ~ orden.cantidad }}
+                        {% for pedido in pedidos %}
+                            <tr>
+                                <td>{{pedido.id}}</td>
+                                <td>
+                                    {% for orden in ordenes %}
+                                        {% if pedido.orden_id == orden.id %}
+                                            {% for pizza in pizzas %}
+                                                {% if orden.pizza_id == pizza.id %}
+                                                    {{ pizza.nombre ~ " x " ~ orden.cantidad }}
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endif %}
                                     {% endfor %}
-                                {% endif %}
-                            {% endfor %}
-                        </td>
-                        <td>
-                            {% for repartidor in repartidores %}
-                                {% if pedido.repartidor_id == repartidor.id %}
-                                    {{ repartidor.nombre }}
-                                {% endif %}
-                            {% endfor %}
-                        </td>
-                        <td>
-                            <a href="{{ url_for('pedidos.update_pedido', id=pedido.id) }}" class="button is-small is-link">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                            <a href="{{ url_for('pedidos.delete_pedido', id=pedido.id) }}" class="button is-small is-danger">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>  
-                        </td>
-                    </tr>
-                                            
-                {% endfor %}
+                                </td>
+                                <td>
+                                    {% for repartidor in repartidores %}
+                                        {% if pedido.repartidor_id == repartidor.id %}
+                                            {{ repartidor.nombre }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('pedidos.update_pedido', id=pedido.id) }}" class="button is-small is-link">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="{{ url_for('pedidos.delete_pedido', id=pedido.id) }}" class="button is-small is-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>  
+                                </td>
+                            </tr>
+                                                            
+                        {% endfor %}
 
-            
-            </tbody>
-        </table>
+                    
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column is-6">
+                <h2 class="title is-4 has-text-centered">Órdenes</h2>
+                <div class="has-text-centered mb-4">
+                    <a href="{{url_for('pedidos.add_orden')}}" class="button is-success">
+                        <i class="fa-solid fa-plus"></i> &nbsp; Agregar Orden
+                    </a>
+                </div>
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>ID Orden</th>
+                            <th>Pizza</th>
+                            <th>Cantidad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for orden in ordenes %}
+                            <tr>
+                                <td>{{orden.id}}</td>
+                                <td>
+                                    {% for pizza in pizzas %}
+                                        {% if orden.pizza_id == pizza.id %}
+                                            {{ pizza.nombre }}
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{orden.cantidad}}</td>
+                                <td>
+                                    <a href="{{url_for('pedidos.update_orden', id=orden.id)}}" class="button is-small is-link">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a href="{{url_for('pedidos.delete_orden', id=orden.id)}}" class="button is-small is-danger">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>  
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

@@ -6,28 +6,46 @@
 <div class="columns">
     <div class="column is-offset-3 is-6">
         <h1 class="title">Editar pizza</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <div class="field">
                 <label class="label">Nombre</label>
                 <div class="control">
                     <input class="input" type="text" name="nombre" value="{{ pizzas.nombre }}" required>
                 </div>
             </div>
-
+        
             <div class="field">
                 <label class="label">Masa</label>
                 <div class="control">
                     <input class="input" type="text" name="masa" value="{{ pizzas.masa }}" required>
                 </div>
             </div>
-
+        
             <div class="field">
                 <label class="label">Queso</label>
                 <div class="control">
                     <input class="input" type="text" name="queso" value="{{ pizzas.queso }}" required>
                 </div>
             </div>
-
+        
+            <div class="field">
+                <label class="label">Imagen actual</label>
+                <div class="control">
+                    {% if pizzas.imagen %}
+                        <img src="{{ url_for('static', filename='img/' + pizzas.imagen) }}" alt="Imagen de la pizza" width="150">
+                    {% else %}
+                        <p>No hay imagen</p>
+                    {% endif %}
+                </div>
+            </div>
+        
+            <div class="field">
+                <label class="label">Nueva Imagen (opcional)</label>
+                <div class="control">
+                    <input class="input" type="file" name="imagen">
+                </div>
+            </div>
+        
             <div class="field">
                 <div class="control">
                     <button class="button is-success" type="submit">Actualizar pizza</button>

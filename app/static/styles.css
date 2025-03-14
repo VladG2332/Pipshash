@@ -166,3 +166,33 @@ body {
 .tabla_pedidos tr:hover td {
     background-color: #bdc3c7;
 }
+
+.card {
+    transition: transform 0.2s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.card-footer-item {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.image img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+

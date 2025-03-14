@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-content">
                 <h2 class="title is-4 has-text-centered">Agregar Repartidor</h2>
-                <form action="{{ url_for('repartidores.add_repartidor') }}" method="post">
+                <form action="{{ url_for('repartidores.add_repartidor') }}" method="post" enctype="multipart/form-data">
                     <div class="field">
                         <label class="label">Nombre:</label>
                         <div class="control">
@@ -25,6 +25,12 @@
                             <input class="input" type="number" name="capacidad" required>
                         </div>
                     </div>
+
+                    <div class="field">
+                        <label class="label">Imagen</label>
+                        <input class="input" type="file" name="imagen">
+                    </div>
+
                     <div class="buttons">
                         <button class="button is-success" type="submit">Agregar</button>
                         <a class="button is-danger" href="{{ url_for('repartidores.listar_repartidores') }}">Cancelar</a>
